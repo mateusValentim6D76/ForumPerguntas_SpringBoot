@@ -2,6 +2,9 @@ package br.com.alura.forum.modelo;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Resposta {
 
 	private Long id;

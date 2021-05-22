@@ -1,5 +1,8 @@
 package br.com.alura.forum.modelo;
 
+import javax.persistence.Entity;
+
+@Entity
 public enum StatusTopico {
 	
 	NAO_RESPONDIDO,
