@@ -32,11 +32,7 @@ public class Topico {
 	@OneToMany(mappedBy = "topico") //mapped By pra não achar q é um novo mapeamento, na classe Resposta já vai estar mapeado o relacionamento com o tópico
 	private List<Resposta> respostas = new ArrayList<>();
 
-	public Topico(String titulo, String mensagem, Curso curso) {
-		this.titulo = titulo;
-		this.mensagem = mensagem;
-		this.curso = curso;
-	}
+
 
 	@Override
 	public int hashCode() {
