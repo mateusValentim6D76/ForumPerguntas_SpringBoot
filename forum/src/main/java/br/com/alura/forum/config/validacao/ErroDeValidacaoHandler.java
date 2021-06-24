@@ -11,7 +11,7 @@ public class ErroDeValidacaoHandler {
 
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public List<ErroDeFormulario> handle(MethodArgumentNotValidException exception){
+	public List<ErroDeFormularioDto> handle(MethodArgumentNotValidException exception){
 		
 	}
 }
