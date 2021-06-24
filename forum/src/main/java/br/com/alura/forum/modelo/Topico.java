@@ -13,6 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Topico {
@@ -29,10 +32,19 @@ public class Topico {
 	private Usuario autor;
 	@ManyToOne
 	private Curso curso;
-	@OneToMany(mappedBy = "topico") //mapped By pra não achar q é um novo mapeamento, na classe Resposta já vai estar mapeado o relacionamento com o tópico
+	@OneToMany(mappedBy = "topico") // mapped By pra não achar q é um novo mapeamento, na classe Resposta já vai
+									// estar mapeado o relacionamento com o tópico
 	private List<Resposta> respostas = new ArrayList<>();
 
+	public Topico () {
+		
+	}
 
+	public Topico(String titulo, String mensagem, Curso curso) {
+		this.titulo = titulo;
+		this.mensagem = mensagem;
+		this.curso = curso;
+	}
 
 	@Override
 	public int hashCode() {
