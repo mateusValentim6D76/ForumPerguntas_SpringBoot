@@ -26,6 +26,7 @@ import br.com.alura.forum.controller.form.TopicoForm;
 import br.com.alura.forum.modelo.Topico;
 import br.com.alura.forum.repository.CursoRepository;
 import br.com.alura.forum.repository.TopicoRepository;
+import br.com.alura.forum.service.TopicosService;
 
 @RestController
 @RequestMapping("/topicos")
@@ -37,20 +38,22 @@ public class TopicosController {
 	@Autowired
 	private CursoRepository cursoRepository;
 
+	@Autowired
+	private TopicosService topicoService;
+
 	@GetMapping
-	public List<TopicoDto> lista(String nomeCurso) {
-		if (nomeCurso == null) {
-			List<Topico> topicos = topicoRepository.findAll();
-			return TopicoDto.converter(topicos);
-		} else {
-			List<Topico> topicos = topicoRepository.findByCurso_Nome(nomeCurso);
-			return TopicoDto.converter(topicos);
+	public ResponseEntity<?> lista(@PathVariable String nomeTopico) throws Exception {
+		List<TopicoDto> retorno = topicoService.lista(nomeTopico);
+		if(retorno.isEmpty()) {
+			return ResponseEntity.notFound().build();	
 		}
+		return ResponseEntity.ok(retorno);
 	}
 
 	// inserção da anotação VALID, captura as validações a serem utilizadas nos
 	// campos do formulário
-	@PostMapping
+	// @PostMapping
+	@PostMapping("/cadastrar")
 	public ResponseEntity<TopicoDto> cadastrar(@RequestBody @Valid TopicoForm form, UriComponentsBuilder uriBuilder) {
 		Topico topico = form.converter(cursoRepository);
 		topicoRepository.save(topico);
@@ -85,9 +88,9 @@ public class TopicosController {
 	public ResponseEntity<?> deletar(@PathVariable Long id) {
 		Optional<Topico> optional = topicoRepository.findById(id);
 		if (optional.isPresent()) {
-		topicoRepository.deleteById(id);
-		return ResponseEntity.ok().build();
-	}
+			topicoRepository.deleteById(id);
+			return ResponseEntity.ok().build();
+		}
 		return ResponseEntity.notFound().build();
 
 	}

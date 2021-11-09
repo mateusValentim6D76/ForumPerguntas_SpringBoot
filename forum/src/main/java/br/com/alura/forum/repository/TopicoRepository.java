@@ -11,7 +11,9 @@ import br.com.alura.forum.modelo.Topico;
 public interface TopicoRepository extends JpaRepository<Topico, Long> {
 
 	// nome do método segue o padrão do Spring Data, EntidadeDER_Atributo
-	List<Topico> findByCurso_Nome(String nomeCurso);
+	List<Topico> findByTitulo(String nomeTopico);
+	
+	List<Topico> findByTituloContains(String nomeTopico);
 	
 	
 	//Vantagem que eu coloco o nome do método como quiser, porém, temos de montar a query

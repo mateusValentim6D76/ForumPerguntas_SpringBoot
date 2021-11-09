@@ -16,8 +16,28 @@
 	<description>Projeto forum alura</description>
 	<properties>
 		<java.version>1.8</java.version>
+		<swagger-annotations-version>1.5.22</swagger-annotations-version>
+		<springfox-version>2.9.2</springfox-version>
 	</properties>
 	<dependencies>
+
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>${swagger-annotations-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${springfox-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${springfox-version}</version>
+		</dependency>
+
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
